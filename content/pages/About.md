@@ -31,7 +31,7 @@ My ambitious 10-year mission is to establish **Tamil Nadu as the GenAI Hub of In
 
 ## Links
 
-- [LinkedIn](www.linkedin.com/in/premkumargunasekaran-bengaluru)
+- [LinkedIn](https://www.linkedin.com/in/athiraraghu14/)
 - [GitHub](https://github.com/apgprem)
 - [PyPI](https://pypi.org/user/rajacsp/)
 
