@@ -32,8 +32,7 @@ My ambitious 10-year mission is to establish **Tamil Nadu as the GenAI Hub of In
 ## Links
 
 - [LinkedIn](https://www.linkedin.com/in/athiraraghu14/)
-- [GitHub](https://github.com/apgprem)
-- [PyPI](https://pypi.org/user/rajacsp/)
+- [GitHub](https://github.com/athiraraghu-blr)
 
 ## Outside of Tech
 
