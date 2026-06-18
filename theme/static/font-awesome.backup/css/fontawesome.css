@@ -2818,10 +2818,10 @@ readers do not read off random characters that represent icons */
 .fa-flag-usa::before {
   content: "\f74d"; }
 
-.fa-flask::before {
+.fa-**Flask**::before {
   content: "\f0c3"; }
 
-.fa-flask-vial::before {
+.fa-**Flask**-vial::before {
   content: "\e4f3"; }
 
 .fa-floppy-disk::before {

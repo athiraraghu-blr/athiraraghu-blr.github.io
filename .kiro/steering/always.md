@@ -10,9 +10,9 @@ inclusion: always
 - if you see file name called .ant, consider it is my custom "admin notes" file where I keep some notes for admin purposes. It is not related to anything in Java. It's pure local custom notes.
 - when you deal with prompts in python, keep the prompts separated in "prompts/*.txt". It should not be attached with python code. It should be always in .txt file.
 
-## FastAPI 
+## **FastAPI** 
 
-- when you work with FastAPI, consider "app.py" as your main file and the server should be run by "python app.py".
+- when you work with **FastAPI**, consider "app.py" as your main file and the server should be run by "python app.py".
 
 ## Random Data Maker
 

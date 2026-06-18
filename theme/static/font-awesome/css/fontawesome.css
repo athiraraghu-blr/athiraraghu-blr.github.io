@@ -1220,7 +1220,7 @@ readers do not read off random characters that represent icons */
 .fa-eye-slash {
   --fa: "\f070"; }
 
-.fa-flask-vial {
+.fa-**Flask**-vial {
   --fa: "\e4f3"; }
 
 .fa-hand {
@@ -4118,7 +4118,7 @@ readers do not read off random characters that represent icons */
 .fa-cent-sign {
   --fa: "\e3f5"; }
 
-.fa-flask {
+.fa-**Flask** {
   --fa: "\f0c3"; }
 
 .fa-person-pregnant {
