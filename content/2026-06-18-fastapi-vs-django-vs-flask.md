@@ -1,3 +1,10 @@
+Title: FastAPI vs Django vs Flask: Which Should You Choose?
+Date: 2026-06-18
+Category: Article
+Tags: GenAI, LLM, machine-learning, deep-learning, announcement
+Slug: fastpai-djanho-flask
+
+
 # **FastAPI** vs **Django** vs **Flask**: Which Should You Choose?
 
 **Django** is full-featured, **Flask** is lightweight, and **FastAPI** is modern and fast. The best choice depends on your project needs.
