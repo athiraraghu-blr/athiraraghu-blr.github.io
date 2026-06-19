@@ -1,7 +1,7 @@
 AUTHOR = 'Athira'
 SITENAME = 'Athira'
 SITETITLE = 'Athira'
-SITEURL = "https://athiraraghu-blr.github.io/"
+SITEURL = "https://athiraraghu-blr.github.io"
 PATH = "content"
 TIMEZONE = 'Asia/Kolkata'
 DEFAULT_LANG = 'en'
