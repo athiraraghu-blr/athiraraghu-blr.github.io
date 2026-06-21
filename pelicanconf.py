@@ -48,4 +48,4 @@ DEFAULT_PAGINATION = 10
 
 # Uncomment following line if you want document-relative URLs when developing
 # RELATIVE_URLS = True 2
-
+# D:\kact\athiraraghu-blr.github.io\content\images\athira.jpeg

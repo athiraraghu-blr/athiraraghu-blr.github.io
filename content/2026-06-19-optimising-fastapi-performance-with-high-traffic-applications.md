@@ -12,6 +12,7 @@ FastAPI is fast by default, but scaling requires optimized async code, caching, 
 FastAPI is built on Starlette and runs on an async event loop (via uvicorn or hypercorn). The single biggest mistake developers make is mixing blocking I/O into async route handlers.
 
 python:
+
 ❌ Blocks the event loop — kills concurrency
 
 @app.get("/users/{user_id}")
