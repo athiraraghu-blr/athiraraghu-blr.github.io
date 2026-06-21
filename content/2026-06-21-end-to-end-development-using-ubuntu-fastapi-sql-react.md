@@ -120,7 +120,7 @@ Define models with SQLAlchemy, mirroring your SQL schema, and Pydantic schemas t
 
 python
 
-#models.py
+models.py
 
 from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
 
@@ -140,7 +140,7 @@ class Task(Base):
 
 python
 
-#schemas.py
+schemas.py
 
 from pydantic import BaseModel
 
@@ -162,7 +162,7 @@ class TaskOut(TaskCreate):
 
 python
 
-#main.py
+main.py
 
 from fastapi import FastAPI, Depends
 
@@ -386,9 +386,9 @@ Once the application is stable:
 
 3. **Run FastAPI behind a process manager** like systemd or supervisor, fronted by Nginx as a reverse proxy, with **Gunicorn + Uvicorn workers** handling concurrency:
 
-bash
+    bash
 
-gunicorn -w 4 -k uvicorn.workers.UvicornWorker main:app
+    gunicorn -w 4 -k uvicorn.workers.UvicornWorker main:app
 
 4. **Build the React app for production** (npm run build) and serve the static files via Nginx or a CDN.
 
