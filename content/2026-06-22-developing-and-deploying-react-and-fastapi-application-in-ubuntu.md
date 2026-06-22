@@ -15,20 +15,16 @@ Before diving in, make sure your Ubuntu system (20.04 or 22.04 LTS recommended) 
 3. **Nginx** — to serve as a reverse proxy
 4. **Git** — for version control
 
-Install the basics in one go:
+# Install the basics in one go:
 
-sudo apt update && sudo apt upgrade -y
-sudo apt install -y git nginx python3-pip python3-venv curl
-
-# Install Node.js via NodeSource
+bash
 
     sudo apt update && sudo apt upgrade -y
-
     sudo apt install -y git nginx python3-pip python3-venv curl
 
-    curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-
-    sudo apt install -y nodejs
+    #Install Node.js via NodeSource
+        curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+        sudo apt install -y nodejs
 
 # **Part 1: Building the FastAPI Backend**
 
@@ -39,13 +35,9 @@ Create a project directory and set up a Python virtual environment:
 bash
 
     mkdir ~/myapp && cd ~/myapp
-
     mkdir backend && cd backend
-
     python3 -m venv venv
-    
     source venv/bin/activate
-
     pip install fastapi uvicorn
 
 **1.2 Writing the API**
@@ -55,33 +47,19 @@ Create a file called main.py:
 python
 
     from fastapi import FastAPI
-
     from fastapi.middleware.cors import CORSMiddleware
-
     app = FastAPI()
-
     app.add_middleware(
-
         CORSMiddleware,
-
         allow_origins=["*"],  # Restrict in production
-
         allow_methods=["*"],
-
         allow_headers=["*"],
-
     )
-
     @app.get("/")
-
     def root():
-
         return {"message": "Hello from FastAPI!"}
-
     @app.get("/items/{item_id}")
-
     def get_item(item_id: int):
-
         return {"item_id": item_id, "name": f"Item {item_id}"}
 
 **1.3 Running the Backend Locally**
@@ -101,9 +79,7 @@ From the ~/myapp directory:
 bash
 
     cd ~/myapp
-
     npx create-react-app frontend
-
     cd frontend
 
 **2.2 Fetching Data from the API**
@@ -113,35 +89,20 @@ Edit src/App.js to call your FastAPI backend:
 javascript
 
     import { useEffect, useState } from "react";
-
     function App() {
-
         const [message, setMessage] = useState("Loading...");
-
             useEffect(() => {
-
                 fetch("http://localhost:8000/")
-
                 .then((res) => res.json())
-
                 .then((data) => setMessage(data.message));
-
             }, []);
-
         return (
-
             <div style={{ padding: "2rem", fontFamily: "sans-serif" }}>
-
                 <h1>React + FastAPI</h1>
-
                 <p>{message}</p>
-
             </div>
-
         );
-
     }
-
     export default App;
 
 **2.3 Running the Frontend Locally**
@@ -161,7 +122,6 @@ When you're ready to deploy, produce a production build:
 bash
 
     cd ~/myapp/frontend
-    
     npm run build
 
 This creates an optimized build/ folder ready to be served as static files.
@@ -173,9 +133,7 @@ Install and configure **Gunicorn** with **Uvicorn workers** so the backend runs 
 bash
     
     cd ~/myapp/backend
-    
     source venv/bin/activate
-    
     pip install gunicorn
 
 Create a **systemd service** to keep it running:
@@ -187,23 +145,14 @@ bash
 ini
 
     [Unit]
-    
     Description=FastAPI Application
-    
     After=network.target
-
     [Service]
-    
     User=ubuntu
-    
     WorkingDirectory=/home/ubuntu/myapp/backend
-    
     ExecStart=/home/ubuntu/myapp/backend/venv/bin/gunicorn -k uvicorn.workers.UvicornWorker main:app --bind 0.0.0.0:8000
-    
     Restart=always
-
     [Install]
-    
     WantedBy=multi-user.target
 
 Enable and start the service:
@@ -211,9 +160,7 @@ Enable and start the service:
 bash
 
     sudo systemctl daemon-reload
-    
     sudo systemctl enable fastapi
-
     sudo systemctl start fastapi
 
 **3.3 Configure Nginx as a Reverse Proxy**
@@ -250,9 +197,7 @@ Enable the site and restart Nginx:
 bash
 
     sudo ln -s /etc/nginx/sites-available/myapp /etc/nginx/sites-enabled/
-    
     sudo nginx -t
-    
     sudo systemctl restart nginx
 
 **3.4 (Optional) Enable HTTPS with Certbot**
@@ -260,7 +205,6 @@ bash
 bash
 
     sudo apt install -y certbot python3-certbot-nginx
-    
     sudo certbot --nginx -d your-domain.com
 
 Certbot will automatically configure SSL and set up certificate renewal.
@@ -272,19 +216,16 @@ When you push code changes, here's a simple update workflow:
 
 bash
 
-    Pull latest code
-
+    #Pull latest code
     cd ~/myapp && git pull
 
-    Rebuild the frontend
-    
+    #Rebuild the frontend
     cd frontend && npm install && npm run build
 
-    Restart the backend service
-    
+    #Restart the backend service
     sudo systemctl restart fastapi
 
-    Summary
+Summary
 
 By following this guide, you've put together a solid, production-ready stack on Ubuntu. The React frontend is compiled into static files and served efficiently by Nginx on port 80, keeping page load times fast without any server-side rendering overhead. Behind the scenes, FastAPI runs on port 8000, powered by Uvicorn workers and managed by Gunicorn, with systemd ensuring the process restarts automatically if anything goes wrong.
 

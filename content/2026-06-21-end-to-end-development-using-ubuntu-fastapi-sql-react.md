@@ -27,13 +27,9 @@ Start by preparing a clean, reproducible development environment.
 bash
 
   sudo apt update && sudo apt upgrade -y
-
   sudo apt install -y python3 python3-venv python3-pip \
-
       postgresql postgresql-contrib \
-
       nodejs npm \
-
       git curl build-essential
 
 **A few practical notes:**
@@ -47,7 +43,6 @@ Set up **Git** early and configure SSH keys for your remote repository (GitHub, 
 bash
 
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-
   nvm install --lts
 
 This base setup gives you a consistent environment that mirrors what you’d run in production, reducing “it works on my machine” issues later.
@@ -61,37 +56,23 @@ Start PostgreSQL and create a database:
 bash
 
   sudo -u postgres createuser --interactive
-
   sudo -u postgres createdb myapp_db
 
 Define your schema with clear tables, primary keys, and foreign key relationships. For example, a simple task-management app might have:
 
   sql
-
     CREATE TABLE users (
-
         id SERIAL PRIMARY KEY,
-
         email VARCHAR(255) UNIQUE NOT NULL,
-
         hashed_password VARCHAR(255) NOT NULL,
-
         created_at TIMESTAMP DEFAULT NOW()
-
   );
-
     CREATE TABLE tasks (
-
         id SERIAL PRIMARY KEY,
-
         user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-
         title VARCHAR(255) NOT NULL,
-
         is_complete BOOLEAN DEFAULT FALSE,
-
         created_at TIMESTAMP DEFAULT NOW()
-
  );
 
 Key practices at this stage:
@@ -110,52 +91,34 @@ With the database ready, connect it to a FastAPI application.
 
 bash
 
-python3 -m venv venv
-
-source venv/bin/activate
-
-pip install fastapi uvicorn sqlalchemy psycopg2-binary alembic pydantic-settings
+  python3 -m venv venv
+  source venv/bin/activate
+  pip install fastapi uvicorn sqlalchemy psycopg2-binary alembic pydantic-settings
 
 Define models with SQLAlchemy, mirroring your SQL schema, and Pydantic schemas to validate incoming and outgoing data:
 
 python
 
   models.py
-
   from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
-
   from database import Base
-
   class Task(Base):
-
       __tablename__ = "tasks"
-
       id = Column(Integer, primary_key=True, index=True)
-
       user_id = Column(Integer, ForeignKey("users.id"))
-
       title = Column(String, nullable=False)
-
       is_complete = Column(Boolean, default=False)
 
 python
 
   schemas.py
-
   from pydantic import BaseModel
-
   class TaskCreate(BaseModel):
-
       title: str
-
   class TaskOut(TaskCreate):
-
       id: int
-
       is_complete: bool
-
       class Config:
-
           from_attributes = True
 
 **Build routes** that expose clean, RESTful endpoints:
@@ -163,49 +126,27 @@ python
 python
 
   main.py
-
   from fastapi import FastAPI, Depends
-
   from sqlalchemy.orm import Session
-
   import models, schemas
-
   from database import SessionLocal, engine
-
   models.Base.metadata.create_all(bind=engine)
-
   app = FastAPI()
-
   def get_db():
-
       db = SessionLocal()
-
       try:
-
           yield db
-
      finally:
-
           db.close()
-
   @app.post("/tasks/", response_model=schemas.TaskOut)
-
   def create_task(task: schemas.TaskCreate, db: Session = Depends(get_db)):
-
       db_task = models.Task(title=task.title)
-
       db.add(db_task)
-
       db.commit()
-
       db.refresh(db_task)
-
       return db_task
-
   @app.get("/tasks/", response_model=list[schemas.TaskOut])
-
   def list_tasks(db: Session = Depends(get_db)):
-
       return db.query(models.Task).all()
 
 Run the server locally:
@@ -219,17 +160,11 @@ FastAPI automatically generates interactive documentation at /docs, which is inv
 python
 
   from fastapi.middleware.cors import CORSMiddleware
-
   app.add_middleware(
-
       CORSMiddleware,
-
       allow_origins=["http://localhost:5173"],
-
       allow_methods=["*"],
-
       allow_headers=["*"],
-
   )
 
 # **Step 4: Building the Frontend with React**
@@ -239,11 +174,8 @@ With a working API, scaffold the frontend:
 bash
 
   npm create vite@latest frontend -- --template react
-
   cd frontend
-
   npm install axios
-
   npm run dev
 
 Structure components around the API resources you’ve built. A simple task list might look like this:
@@ -251,57 +183,31 @@ Structure components around the API resources you’ve built. A simple task list
 jsx
 
   // TaskList.jsx
-
   import { useEffect, useState } from "react";
-
   import axios from "axios";
-
   const API_URL = "http://localhost:8000";
-
   export default function TaskList() {
-
     const [tasks, setTasks] = useState([]);
-
     const [title, setTitle] = useState("");
-
     useEffect(() => {
-
       axios.get(`${API_URL}/tasks/`).then((res) => setTasks(res.data));
-
     }, []);
-
     const addTask = async () => {
-
       const res = await axios.post(`${API_URL}/tasks/`, { title });
-
       setTasks([...tasks, res.data]);
-
       setTitle("");
-
     };
-
     return (
-
       <div>
-
         <input value={title} onChange={(e) => setTitle(e.target.value)} />
-
         <button onClick={addTask}>Add Task</button>
-
         <ul>
-
           {tasks.map((t) => (
-
             <li key={t.id}>{t.title}</li>
-
           ))}
-
         </ul>
-
       </div>
-
     );
-
   }
 
 Good practices at this layer:
@@ -327,41 +233,23 @@ Many teams use a Makefile or a simple shell script to start everything at once, 
 yaml
 
   version: "3.9"
-
   services:
-
     db:
-
       image: postgres:16
-
       environment:
-
         POSTGRES_DB: myapp_db
-
         POSTGRES_PASSWORD: postgres
-
       ports:
-
         - "5432:5432"
-
     backend:
-
       build: ./backend
-
       ports:
-
         - "8000:8000"
-
       depends_on:
-
         - db
-
     frontend:
-
       build: ./frontend
-
       ports:
-
         - "5173:5173"
 
 This containerized setup also closes the gap between development and production, since the same Ubuntu-based images can be deployed to a cloud VM or Kubernetes cluster later.
@@ -386,9 +274,9 @@ Once the application is stable:
 
 3. **Run FastAPI behind a process manager** like systemd or supervisor, fronted by Nginx as a reverse proxy, with **Gunicorn + Uvicorn workers** handling concurrency:
 
-    bash
+bash
 
-      gunicorn -w 4 -k uvicorn.workers.UvicornWorker main:app
+  gunicorn -w 4 -k uvicorn.workers.UvicornWorker main:app
 
 4. **Build the React app for production** (npm run build) and serve the static files via Nginx or a CDN.
 
