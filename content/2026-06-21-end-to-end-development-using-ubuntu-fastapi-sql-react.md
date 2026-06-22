@@ -26,15 +26,15 @@ Start by preparing a clean, reproducible development environment.
 
 bash
 
-sudo apt update && sudo apt upgrade -y
+  sudo apt update && sudo apt upgrade -y
 
-sudo apt install -y python3 python3-venv python3-pip \
+  sudo apt install -y python3 python3-venv python3-pip \
 
-    postgresql postgresql-contrib \
+      postgresql postgresql-contrib \
 
-    nodejs npm \
+      nodejs npm \
 
-    git curl build-essential
+      git curl build-essential
 
 **A few practical notes:**
 
@@ -46,9 +46,9 @@ Set up **Git** early and configure SSH keys for your remote repository (GitHub, 
 
 bash
 
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 
-nvm install --lts
+  nvm install --lts
 
 This base setup gives you a consistent environment that mirrors what you’d run in production, reducing “it works on my machine” issues later.
 
@@ -60,39 +60,39 @@ Start PostgreSQL and create a database:
 
 bash
 
-sudo -u postgres createuser --interactive
+  sudo -u postgres createuser --interactive
 
-sudo -u postgres createdb myapp_db
+  sudo -u postgres createdb myapp_db
 
 Define your schema with clear tables, primary keys, and foreign key relationships. For example, a simple task-management app might have:
 
-sql
+  sql
 
-CREATE TABLE users (
+    CREATE TABLE users (
 
-    id SERIAL PRIMARY KEY,
+        id SERIAL PRIMARY KEY,
 
-    email VARCHAR(255) UNIQUE NOT NULL,
+        email VARCHAR(255) UNIQUE NOT NULL,
 
-    hashed_password VARCHAR(255) NOT NULL,
+        hashed_password VARCHAR(255) NOT NULL,
 
-    created_at TIMESTAMP DEFAULT NOW()
+        created_at TIMESTAMP DEFAULT NOW()
 
-);
+  );
 
-CREATE TABLE tasks (
+    CREATE TABLE tasks (
 
-    id SERIAL PRIMARY KEY,
+        id SERIAL PRIMARY KEY,
 
-    user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+        user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
 
-    title VARCHAR(255) NOT NULL,
+        title VARCHAR(255) NOT NULL,
 
-    is_complete BOOLEAN DEFAULT FALSE,
+        is_complete BOOLEAN DEFAULT FALSE,
 
-    created_at TIMESTAMP DEFAULT NOW()
+        created_at TIMESTAMP DEFAULT NOW()
 
-);
+ );
 
 Key practices at this stage:
 
@@ -120,117 +120,117 @@ Define models with SQLAlchemy, mirroring your SQL schema, and Pydantic schemas t
 
 python
 
-models.py
+  models.py
 
-from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
+  from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
 
-from database import Base
+  from database import Base
 
-class Task(Base):
+  class Task(Base):
 
-    __tablename__ = "tasks"
+      __tablename__ = "tasks"
 
-    id = Column(Integer, primary_key=True, index=True)
+      id = Column(Integer, primary_key=True, index=True)
 
-    user_id = Column(Integer, ForeignKey("users.id"))
+      user_id = Column(Integer, ForeignKey("users.id"))
 
-    title = Column(String, nullable=False)
+      title = Column(String, nullable=False)
 
-    is_complete = Column(Boolean, default=False)
+      is_complete = Column(Boolean, default=False)
 
 python
 
-schemas.py
+  schemas.py
 
-from pydantic import BaseModel
+  from pydantic import BaseModel
 
-class TaskCreate(BaseModel):
+  class TaskCreate(BaseModel):
 
-    title: str
+      title: str
 
-class TaskOut(TaskCreate):
+  class TaskOut(TaskCreate):
 
-    id: int
+      id: int
 
-    is_complete: bool
+      is_complete: bool
 
-    class Config:
+      class Config:
 
-        from_attributes = True
+          from_attributes = True
 
 **Build routes** that expose clean, RESTful endpoints:
 
 python
 
-main.py
+  main.py
 
-from fastapi import FastAPI, Depends
+  from fastapi import FastAPI, Depends
 
-from sqlalchemy.orm import Session
+  from sqlalchemy.orm import Session
 
-import models, schemas
+  import models, schemas
 
-from database import SessionLocal, engine
+  from database import SessionLocal, engine
 
-models.Base.metadata.create_all(bind=engine)
+  models.Base.metadata.create_all(bind=engine)
 
-app = FastAPI()
+  app = FastAPI()
 
-def get_db():
+  def get_db():
 
-    db = SessionLocal()
+      db = SessionLocal()
 
-    try:
+      try:
 
-        yield db
+          yield db
 
-    finally:
+     finally:
 
-        db.close()
+          db.close()
 
-@app.post("/tasks/", response_model=schemas.TaskOut)
+  @app.post("/tasks/", response_model=schemas.TaskOut)
 
-def create_task(task: schemas.TaskCreate, db: Session = Depends(get_db)):
+  def create_task(task: schemas.TaskCreate, db: Session = Depends(get_db)):
 
-    db_task = models.Task(title=task.title)
+      db_task = models.Task(title=task.title)
 
-    db.add(db_task)
+      db.add(db_task)
 
-    db.commit()
+      db.commit()
 
-    db.refresh(db_task)
+      db.refresh(db_task)
 
-    return db_task
+      return db_task
 
-@app.get("/tasks/", response_model=list[schemas.TaskOut])
+  @app.get("/tasks/", response_model=list[schemas.TaskOut])
 
-def list_tasks(db: Session = Depends(get_db)):
+  def list_tasks(db: Session = Depends(get_db)):
 
-    return db.query(models.Task).all()
+      return db.query(models.Task).all()
 
 Run the server locally:
 
 bash
 
-uvicorn main:app --reload
+  uvicorn main:app --reload
 
 FastAPI automatically generates interactive documentation at /docs, which is invaluable for testing endpoints before the frontend even exists. This is also the point to add **CORS middleware** so your React app (running on a different port) can talk to the API:
 
 python
 
-from fastapi.middleware.cors import CORSMiddleware
+  from fastapi.middleware.cors import CORSMiddleware
 
-app.add_middleware(
+  app.add_middleware(
 
-    CORSMiddleware,
+      CORSMiddleware,
 
-    allow_origins=["http://localhost:5173"],
+      allow_origins=["http://localhost:5173"],
 
-    allow_methods=["*"],
+      allow_methods=["*"],
 
-    allow_headers=["*"],
+      allow_headers=["*"],
 
-)
+  )
 
 # **Step 4: Building the Frontend with React**
 
@@ -238,71 +238,71 @@ With a working API, scaffold the frontend:
 
 bash
 
-npm create vite@latest frontend -- --template react
+  npm create vite@latest frontend -- --template react
 
-cd frontend
+  cd frontend
 
-npm install axios
+  npm install axios
 
-npm run dev
+  npm run dev
 
 Structure components around the API resources you’ve built. A simple task list might look like this:
 
 jsx
 
-// TaskList.jsx
+  // TaskList.jsx
 
-import { useEffect, useState } from "react";
+  import { useEffect, useState } from "react";
 
-import axios from "axios";
+  import axios from "axios";
 
-const API_URL = "http://localhost:8000";
+  const API_URL = "http://localhost:8000";
 
-export default function TaskList() {
+  export default function TaskList() {
 
-  const [tasks, setTasks] = useState([]);
+    const [tasks, setTasks] = useState([]);
 
-  const [title, setTitle] = useState("");
+    const [title, setTitle] = useState("");
 
-  useEffect(() => {
+    useEffect(() => {
 
-    axios.get(`${API_URL}/tasks/`).then((res) => setTasks(res.data));
+      axios.get(`${API_URL}/tasks/`).then((res) => setTasks(res.data));
 
-  }, []);
+    }, []);
 
-  const addTask = async () => {
+    const addTask = async () => {
 
-    const res = await axios.post(`${API_URL}/tasks/`, { title });
+      const res = await axios.post(`${API_URL}/tasks/`, { title });
 
-    setTasks([...tasks, res.data]);
+      setTasks([...tasks, res.data]);
 
-    setTitle("");
+      setTitle("");
 
-  };
+    };
 
-  return (
+    return (
 
-    <div>
+      <div>
 
-      <input value={title} onChange={(e) => setTitle(e.target.value)} />
+        <input value={title} onChange={(e) => setTitle(e.target.value)} />
 
-      <button onClick={addTask}>Add Task</button>
+        <button onClick={addTask}>Add Task</button>
 
-      <ul>
+        <ul>
 
-        {tasks.map((t) => (
+          {tasks.map((t) => (
 
-          <li key={t.id}>{t.title}</li>
+            <li key={t.id}>{t.title}</li>
 
-        ))}
+          ))}
 
-      </ul>
+        </ul>
 
-    </div>
+      </div>
 
-  );
+    );
 
-}
+  }
 
 Good practices at this layer:
 
@@ -326,43 +326,43 @@ Many teams use a Makefile or a simple shell script to start everything at once, 
 
 yaml
 
-version: "3.9"
+  version: "3.9"
 
-services:
+  services:
 
-  db:
+    db:
 
-    image: postgres:16
+      image: postgres:16
 
-    environment:
+      environment:
 
-      POSTGRES_DB: myapp_db
+        POSTGRES_DB: myapp_db
 
-      POSTGRES_PASSWORD: postgres
+        POSTGRES_PASSWORD: postgres
 
-    ports:
+      ports:
 
-      - "5432:5432"
+        - "5432:5432"
 
-  backend:
+    backend:
 
-    build: ./backend
+      build: ./backend
 
-    ports:
+      ports:
 
-      - "8000:8000"
+        - "8000:8000"
 
-    depends_on:
+      depends_on:
 
-      - db
+        - db
 
-  frontend:
+    frontend:
 
-    build: ./frontend
+      build: ./frontend
 
-    ports:
+      ports:
 
-      - "5173:5173"
+        - "5173:5173"
 
 This containerized setup also closes the gap between development and production, since the same Ubuntu-based images can be deployed to a cloud VM or Kubernetes cluster later.
 
@@ -388,7 +388,7 @@ Once the application is stable:
 
     bash
 
-    gunicorn -w 4 -k uvicorn.workers.UvicornWorker main:app
+      gunicorn -w 4 -k uvicorn.workers.UvicornWorker main:app
 
 4. **Build the React app for production** (npm run build) and serve the static files via Nginx or a CDN.
 
