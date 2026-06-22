@@ -14,12 +14,15 @@ FastAPI is built on Starlette and runs on an async event loop (via uvicorn or hy
 python:
 
     ❌ Blocks the event loop — kills concurrency
+
         @app.get("/users/{user_id}")
         async def get_user(user_id: int):
             user = db.execute("SELECT * FROM users WHERE id = ?", 
             user_id)  # sync!
             return user
+
     ✅ Non-blocking — lets other requests run while waiting on I/O
+    
         @app.get("/users/{user_id}")
         async def get_user(user_id: int, db: AsyncSession = Depends(get_db)):
             result = await db.execute(select(User).where(User.id == user_id))
