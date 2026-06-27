@@ -1,5 +1,5 @@
 Title: Make Mistakes Once
-Date: 2026-06-26
+Date: 2026-06-27
 Category: Article
 Tags: m2o, mistakes
 Slug: make-mistakes-once
