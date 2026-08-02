@@ -8,9 +8,11 @@ Slug: effort-commerce-work-for-credits-economy
 
 EffortCommerce is a simple but powerful model: instead of exchanging money for goods, you exchange **effort** for goods. The mechanics are straightforward:
 
-    1. Do some work — complete a task, contribute a skill, finish a project, or perform a service.
-    2. Earn credits — your effort is converted into a currency that lives inside the system.
-    3. Spend credits in the store — use those credits to buy any item available in the marketplace.
+1. Do some work — complete a task, contribute a skill, finish a project, or perform a service.
+
+2. Earn credits — your effort is converted into a currency that lives inside the system.
+
+3. Spend credits in the store — use those credits to buy any item available in the marketplace.
 
 At its core, EffortCommerce replaces cash-based transactions with a labor-based exchange, where the currency itself is a direct record of contribution rather than an abstract store of value.
 
@@ -34,37 +36,37 @@ If the "work" side of the system includes things like tutoring, repairing, desig
 
 A basic EffortCommerce loop could look like this:
 
-    Task Board: Users pick from a list of available tasks (data entry, content creation, community moderation, physical labor, mentoring, etc.).
+*Task Board*: Users pick from a list of available tasks (data entry, content creation, community moderation, physical labor, mentoring, etc.).
 
-    Credit Conversion: Each task has a credit value based on time, difficulty, or demand.
+*Credit Conversion*: Each task has a credit value based on time, difficulty, or demand.
 
-    Marketplace: A store stocked with items — physical goods, digital products, services, or experiences — priced in credits instead of dollars.
+*Marketplace*: A store stocked with items — physical goods, digital products, services, or experiences — priced in credits instead of dollars.
 
-    Redemption: Users spend their earned credits freely, the same way they'd spend cash.
+*Redemption*: Users spend their earned credits freely, the same way they'd spend cash.
 
 # **Potential Use Cases**
 
-    Community platforms: Local exchanges where neighbors trade skills and time for goods or services.
+*Community platforms*: Local exchanges where neighbors trade skills and time for goods or services.
 
-    Corporate reward systems: Employees earn credits for extra initiatives, redeemable in an internal store.
+*Corporate reward systems*: Employees earn credits for extra initiatives, redeemable in an internal store.
 
-    Education platforms: Students earn credits by completing coursework or tutoring peers, spendable on learning materials or perks.
+*Education platforms*: Students earn credits by completing coursework or tutoring peers, spendable on learning materials or perks.
 
-    Nonprofits and volunteering: Volunteers earn credits for hours served, redeemable for supplies or community resources.
+*Nonprofits and volunteering*: Volunteers earn credits for hours served, redeemable for supplies or community resources.
 
-    Gig-economy alternatives: A decentralized way to match effort with reward without requiring upfront capital.
+*Gig-economy alternatives*: A decentralized way to match effort with reward without requiring upfront capital.
 
 # **Challenges to Consider**
 
 No system is without friction, and EffortCommerce raises a few important questions:
 
-    Valuation — How do you fairly price different types of work? An hour of manual labor and an hour of specialized design work may not be equivalent.
+*Valuation* — How do you fairly price different types of work? An hour of manual labor and an hour of specialized design work may not be equivalent.
 
-    Inflation control — If credits are too easy to earn, their value in the store could erode over time.
+*Inflation control* — If credits are too easy to earn, their value in the store could erode over time.
 
-    Quality assurance — Work-for-credit systems need some way to verify that completed tasks meet a baseline standard.
+*Quality assurance* — Work-for-credit systems need some way to verify that completed tasks meet a baseline standard.
 
-    Scalability — Matching enough "work" to enough "store demand" requires careful supply-and-demand balancing, much like any marketplace.
+*Scalability* — Matching enough "work" to enough "store demand" requires careful supply-and-demand balancing, much like any marketplace.
 
 # **The Bigger Picture**
 
