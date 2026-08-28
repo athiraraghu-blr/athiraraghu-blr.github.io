@@ -210,3 +210,4 @@ output/
 
 # IDE
 .idea
+.vercel
