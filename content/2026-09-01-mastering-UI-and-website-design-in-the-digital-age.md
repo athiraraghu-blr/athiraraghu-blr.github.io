@@ -29,25 +29,15 @@ Good design impacts:
 
 # **Core Principles of Great UI Design**
 
-1. Visual Hierarchy
+1. Visual Hierarchy: Not everything on a page deserves equal attention. Size, color, contrast, and placement should guide the eye naturally — from the most important element to the least — so users instinctively know where to look first.
 
-Not everything on a page deserves equal attention. Size, color, contrast, and placement should guide the eye naturally — from the most important element to the least — so users instinctively know where to look first.
+2. Consistency: Buttons should look and behave the same way throughout a site. Fonts, spacing, and color palettes should follow a system. Consistency builds familiarity, and familiarity builds comfort.
 
-2. Consistency
+3. Simplicity: The best interfaces often feel "obvious" — because unnecessary elements have been stripped away. Simplicity isn't about doing less creatively; it's about removing anything that doesn't serve the user's goal.
 
-Buttons should look and behave the same way throughout a site. Fonts, spacing, and color palettes should follow a system. Consistency builds familiarity, and familiarity builds comfort.
+4. Feedback and Responsiveness: Every click, hover, or swipe should have a visible reaction — a color change, a subtle animation, a loading state. This reassures users their action was registered and the system is working.
 
-3. Simplicity
-
-The best interfaces often feel "obvious" — because unnecessary elements have been stripped away. Simplicity isn't about doing less creatively; it's about removing anything that doesn't serve the user's goal.
-
-4. Feedback and Responsiveness
-
-Every click, hover, or swipe should have a visible reaction — a color change, a subtle animation, a loading state. This reassures users their action was registered and the system is working.
-
-5. Accessibility
-
-Design isn't just for the majority. Color contrast, readable font sizes, keyboard navigation, and alt text ensure your website works for everyone, including people with visual, motor, or cognitive differences.
+5. Accessibility: Design isn't just for the majority. Color contrast, readable font sizes, keyboard navigation, and alt text ensure your website works for everyone, including people with visual, motor, or cognitive differences.
 
 # **Principles of Effective Website Design**
 
