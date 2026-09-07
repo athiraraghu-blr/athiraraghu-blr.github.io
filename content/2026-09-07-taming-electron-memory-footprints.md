@@ -1,5 +1,5 @@
 Title: Taming Electron's Memory Footprint: A Practical Guide for Desktop App Developers
-Date: 2026-09-06
+Date: 2026-09-07
 Category: Article
 Tags: electron, javascript, desktop-apps, performance, nodejs, chromium, memory-optimization
 Slug: taming-electron-memory-footprint
