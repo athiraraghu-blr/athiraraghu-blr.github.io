@@ -20,7 +20,7 @@ On top of that baseline, three things tend to inflate memory usage in practice:
 
 # **Practical Steps That Actually Move the Needle**
 
-1. **Treat BrowserWindows like a scarce resource**
+**Treat BrowserWindows like a scarce resource**
 
 Don't create a window to do work that doesn't need a screen. If you need HTML-to-PDF rendering or headless scraping, consider BrowserWindow with show: false only when unavoidable, and destroy it explicitly with win.destroy() the moment the task finishes rather than trusting garbage collection to catch a still-referenced object.
 
@@ -31,7 +31,7 @@ js
     const pdf = await win.webContents.printToPDF({});
     win.destroy(); // don't wait for GC
 
-2. **Turn off what you don't need**
+**Turn off what you don't need**
 
 contextIsolation: true and nodeIntegration: false should be your defaults in every webPreferences block. Beyond the well-documented security benefits, isolating the renderer's JS context from Node means Chromium's V8 instance isn't also dragging along Node's module system and global objects in every window.
 
@@ -48,7 +48,7 @@ js
 
 Expose only the specific functions the renderer needs via contextBridge in your preload script, instead of the whole ipcRenderer object.
 
-3. **Clean up IPC listeners on window close**
+**Clean up IPC listeners on window close**
 
 Every ipcMain.on or ipcMain.handle registered inside a window-creation function should have a matching teardown when that window closes. A common pattern is to namespace listeners per window and strip them in the closed event:
 
@@ -58,15 +58,15 @@ js
     ipcMain.removeAllListeners(`window-${win.id}-update`);
     });
 
-4. **Use webContents.forcefullyCrashRenderer() sparingly, and will-navigate guards liberally**
+**Use webContents.forcefullyCrashRenderer() sparingly, and will-navigate guards liberally**
 
 Renderers that load arbitrary or attacker-influenced URLs can balloon in memory usage if left unchecked, and they're also your biggest attack surface. Restrict navigation with will-navigate and setWindowOpenHandler so a stray window.open() from a webpage doesn't spawn a new full Chromium process you never intended to create.
 
-5. **Profile with the tools Chromium already gives you**
+**Profile with the tools Chromium already gives you**
 
 Electron exposes Chromium's DevTools memory profiler for free. Open DevTools on any renderer (win.webContents.openDevTools()), go to the Memory tab, and take heap snapshots before and after a suspected leak scenario — opening and closing a modal, switching views, etc. Diffing two snapshots is usually enough to spot detached DOM trees or retained closures. For the main process, process.memoryUsage() logged on an interval, or a tool like electron-log combined with Node's built-in --inspect flag, gets you most of the way to a native Node debugging workflow.
 
-6. **Consider V8's --max-old-space-size only as a last resort**
+**Consider V8's --max-old-space-size only as a last resort**
 
 You can cap V8's heap size per renderer via command-line switches, but this doesn't reduce actual memory needs — it just forces more aggressive garbage collection, which trades memory for CPU and can introduce jank. Treat it as a stopgap while you find the real leak, not a fix.
 
