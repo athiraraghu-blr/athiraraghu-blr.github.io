@@ -1,0 +1,98 @@
+/* ==========================================================================
+   Plum theme overrides for Flex
+   Loaded after style.min.css via CUSTOM_CSS in pelicanconf.py
+   Plum palette:
+     --plum-deep:   #5e2750  (deep plum, sidebar / dark accents)
+     --plum:        #8e3b6b  (primary plum)
+     --plum-mid:    #a4508b  (links)
+     --plum-light:  #c874b2  (hover / light accents)
+     --plum-pale:   #f3e6ef  (pale backgrounds)
+   ========================================================================== */
+
+:root {
+  --plum-deep: #440c36;
+  --plum: #782c58;
+  --plum-mid: #894474;
+  --plum-light: #c464aa;
+  --plum-pale: #f4adde;
+}
+
+/* ---- Links ---- */
+a {
+  color: var(--plum-mid);
+}
+a:hover,
+a:focus {
+  color: var(--plum-light);
+}
+
+/* Article titles and their links */
+article header h1 a,
+article header h2 a,
+.single h1 a {
+  color: var(--plum);
+}
+article header h1 a:hover,
+article header h2 a:hover {
+  color: var(--plum-light);
+}
+
+/* ---- Sidebar (aside) ---- */
+aside {
+  background-color: var(--plum-deep);
+}
+aside h1 a,
+aside p {
+  color: #ffffff;
+}
+aside .list a {
+  color: #f3e6ef;
+}
+aside .list a:hover {
+  color: #ffffff;
+}
+
+/* Circular profile image with a plum ring (matches Kaaviyasri's look) */
+aside img {
+  border-radius: 50%;
+  border: 3px solid var(--plum-light);
+  object-fit: cover;
+}
+
+/* ---- Buttons (e.g. "Continue reading") ---- */
+.btn,
+a.btn {
+  background-color: var(--plum);
+  color: #ffffff;
+}
+.btn:hover,
+a.btn:hover {
+  background-color: var(--plum-light);
+  color: #ffffff;
+}
+
+/* ---- Tags / tag cloud ---- */
+.tag-cloud a,
+.tags a {
+  background-color: var(--plum);
+  color: #ffffff;
+}
+.tag-cloud a:hover,
+.tags a:hover {
+  background-color: var(--plum-light);
+}
+
+/* ---- Category / meta accents ---- */
+article header p a {
+  color: var(--plum-mid);
+}
+
+/* ==========================================================================
+   Dark theme adjustments
+   ========================================================================== */
+body.dark-theme aside,
+@media (prefers-color-scheme: dark) {
+  aside {
+    background-color: #2a1226;
+  }
+}

@@ -1,6 +1,7 @@
 AUTHOR = 'Athira'
 SITENAME = 'Athira'
 SITETITLE = 'Athira'
+SITESUBTITLE = 'Writing about GenAI, LLMs, and the tools that make them work.'
 SITEURL = "https://athiraraghu-blr.github.io"
 PATH = "content"
 TIMEZONE = 'Asia/Kolkata'
@@ -23,8 +24,14 @@ PYGMENTS_STYLE = 'github'  # Light mode
 PYGMENTS_STYLE_DARK = 'native'  # Dark mode
 
 # Static files
-STATIC_PATHS = ['images']
+STATIC_PATHS = ['images', 'extra/custom.css']
+EXTRA_PATH_METADATA = {
+    'extra/custom.css': {'path': 'custom.css'},
+}
 SITELOGO = '/images/athira.jpeg'
+
+# Custom stylesheet (plum theme overrides), loaded after the main stylesheet
+CUSTOM_CSS = 'custom.css'
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
