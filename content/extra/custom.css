@@ -1,69 +1,22 @@
 /* ==========================================================================
-   Plum theme overrides for the Flex Pelican theme
+   Custom overrides for the Flex Pelican theme
    Loaded AFTER style.min.css via CUSTOM_CSS in pelicanconf.py
 
-   Fixed palette (less pink, more true plum):
-     --plum-deep:   #2d142c   deepest plum, sidebar background
-     --plum:        #4b1e46   primary plum
-     --plum-mid:    #7b3f6b   links / mid accents
-     --plum-accent: #9c5285   buttons / active states
-     --plum-light:  #c98bae   hover state (soft rose-plum, not hot pink)
-     --plum-pale:   #f2e6ee   pale backgrounds
+   NOTE: Color scheme reverted to the theme's original palette (blue links,
+   orange buttons, grey sidebar) for readability. This file now only keeps
+   the structural tweaks: circular avatar + social icon circles/logos.
    ========================================================================== */
 
-:root {
-  --plum-deep:   #2d142c;
-  --plum:        #4b1e46;
-  --plum-mid:    #7b3f6b;
-  --plum-accent: #9c5285;
-  --plum-light:  #c98bae;
-  --plum-pale:   #f2e6ee;
-}
-
-/* ---- Links (generic) ---- */
-a,
-a:visited {
-  color: var(--plum-mid) !important;
-}
-a:hover,
-a:focus {
-  color: var(--plum-accent) !important;
-}
-
-/* ---- Sidebar: Flex uses #sidebar, not <aside> generically ---- */
-#sidebar,
-#sidebar.body {
-  background-color: var(--plum-deep) !important;
-  background-image: none !important;
-}
-#sidebar #about h1,
-#sidebar #about h1 a,
-#sidebar #about p,
-#sidebar p.subtitle {
-  color: #ffffff !important;
-}
-#sidebar nav#menu a,
-#sidebar #links a,
-#sidebar .list a {
-  color: var(--plum-pale) !important;
-}
-#sidebar nav#menu a:hover,
-#sidebar #links a:hover,
-#sidebar .list a:hover {
-  color: #ffffff !important;
-}
-
-/* Circular avatar with a plum ring.
-   The real markup is: aside > div > a > img  (no #sidebar / #about ids).
-   Force an equal width AND height + object-fit:cover so a non-square photo
-   renders as a perfect circle instead of an oval/ellipse. */
+/* ==========================================================================
+   Profile avatar — perfect circle with a subtle ring, head not cropped
+   Real markup: aside > div > a > img
+   ========================================================================== */
 aside div a img,
 aside img {
   width: 200px !important;
   height: 200px !important;
   max-width: 200px !important;
   border-radius: 50% !important;
-  border: 3px solid var(--plum-accent) !important;
   object-fit: cover !important;
   /* Bias the crop toward the top so the head isn't clipped */
   object-position: center 15% !important;
@@ -71,91 +24,9 @@ aside img {
   margin: 0 auto !important;
 }
 
-/* ---- Top banner/menu, if TOP_MENU is used ---- */
-#banner,
-header#banner {
-  background-color: var(--plum-deep) !important;
-}
-#banner a {
-  color: #ffffff !important;
-}
-
-/* ---- Article / post titles ---- */
-#content article header h1,
-#content article header h1 a,
-#content .post-title,
-#content .post-title a,
-.single h1,
-.single h1 a {
-  color: var(--plum) !important;
-}
-#content article header h1 a:hover,
-#content .post-title a:hover {
-  color: var(--plum-accent) !important;
-}
-
-/* Post meta line (date / category) */
-#content article header p,
-#content article header p a,
-.post-info a {
-  color: var(--plum-mid) !important;
-}
-
-/* ---- Buttons, e.g. "Continue reading" ---- */
-.btn,
-a.btn,
-.button.more {
-  background-color: var(--plum) !important;
-  border-color: var(--plum) !important;
-  color: #ffffff !important;
-}
-.btn:hover,
-a.btn:hover,
-.button.more:hover {
-  background-color: var(--plum-accent) !important;
-}
-
-/* ---- Tags ---- */
-.tag-cloud a,
-.tags a,
-#content .tags a {
-  background-color: var(--plum) !important;
-  color: #ffffff !important;
-}
-.tag-cloud a:hover,
-.tags a:hover {
-  background-color: var(--plum-accent) !important;
-}
-
-/* ---- Pagination ---- */
-.pagination a,
-.pagination span {
-  color: var(--plum-mid) !important;
-}
-.pagination .active,
-.pagination a:hover {
-  background-color: var(--plum) !important;
-  color: #ffffff !important;
-}
-
 /* ==========================================================================
-   Dark theme adjustments
+   Social icons — centered row of equal-sized filled circles
    ========================================================================== */
-body.dark-theme #sidebar {
-  background-color: #1a0a19 !important;
-}
-@media (prefers-color-scheme: dark) {
-  #sidebar {
-    background-color: #1a0a19 !important;
-  }
-}
-
-/* ==========================================================================
-   Social icons — give every icon a filled colored circle (matches the look
-   where GitHub / LinkedIn / Substack / Python all have brand-colored circles)
-   ========================================================================== */
-
-/* Center the social icon row and space the circles evenly. */
 aside ul.social {
   display: flex !important;
   flex-wrap: wrap !important;
@@ -170,7 +41,6 @@ aside ul.social li {
   margin: 0 !important;
 }
 
-/* Force every social icon to be an equal-sized filled circle. */
 aside ul.social a,
 .social a {
   width: 36px !important;
@@ -181,7 +51,7 @@ aside ul.social a,
   text-align: center !important;
 }
 
-/* Keep the glyphs white — the generic plum link color must NOT tint icons. */
+/* Keep social glyphs white on their colored circles */
 aside ul.social a,
 aside ul.social a:visited,
 aside ul.social a i,
@@ -192,8 +62,8 @@ aside ul.social a i,
 }
 
 /* Substack — orange circle with the Substack bookmark mark.
-   The bundled Font Awesome has NO fa-substack glyph, so the <i> renders empty.
-   We draw the mark as an inline SVG background and hide the empty glyph. */
+   The bundled Font Awesome has NO fa-substack glyph, so we draw the mark
+   as an inline SVG background and hide the empty font glyph. */
 aside ul.social a.sc-substack,
 .social a.sc-substack {
   background-color: #ff6719 !important;
@@ -208,10 +78,9 @@ aside ul.social a.sc-substack i,
   display: none !important;
 }
 
-/* Python (PyPI notes) — official two-tone Python logo (blue + yellow snakes).
-   Font Awesome's fa-python is single-color, so we draw the real two-color mark
-   as an inline SVG background and hide the font glyph. White circle so both
-   the blue and yellow tones read clearly. */
+/* Python (PyPI notes) — official two-tone Python logo on a white circle.
+   Font Awesome's fa-python is single-color, so we draw the real two-color
+   mark as an inline SVG background and hide the font glyph. */
 aside ul.social a.sc-python,
 .social a.sc-python {
   background-color: #ffffff !important;
