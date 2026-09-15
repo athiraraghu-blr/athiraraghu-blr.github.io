@@ -8,6 +8,54 @@
    ========================================================================== */
 
 /* ==========================================================================
+   Readable headings & titles (fixes low-contrast plum headings)
+   Light mode: dark text.  Dark mode: light text.
+   ========================================================================== */
+#content article header h1,
+#content article header h1 a,
+#content article header h2,
+#content article header h2 a,
+.post-title,
+.post-title a,
+.single h1,
+.single h1 a,
+main article h1,
+main article h2,
+main article h3 {
+  color: #242121 !important;   /* dark text for light background */
+}
+
+/* Dark mode: switch headings to light so they stay visible */
+body.dark-theme #content article header h1,
+body.dark-theme #content article header h1 a,
+body.dark-theme #content article header h2,
+body.dark-theme #content article header h2 a,
+body.dark-theme .post-title,
+body.dark-theme .post-title a,
+body.dark-theme .single h1,
+body.dark-theme .single h1 a,
+body.dark-theme main article h1,
+body.dark-theme main article h2,
+body.dark-theme main article h3 {
+  color: #eeeeee !important;   /* light text for dark background */
+}
+@media (prefers-color-scheme: dark) {
+  #content article header h1,
+  #content article header h1 a,
+  #content article header h2,
+  #content article header h2 a,
+  .post-title,
+  .post-title a,
+  .single h1,
+  .single h1 a,
+  main article h1,
+  main article h2,
+  main article h3 {
+    color: #eeeeee !important;
+  }
+}
+
+/* ==========================================================================
    Profile avatar — perfect circle with a subtle ring, head not cropped
    Real markup: aside > div > a > img
    ========================================================================== */
