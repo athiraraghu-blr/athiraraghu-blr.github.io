@@ -47,8 +47,8 @@ DISPLAY_PAGES_ON_MENU = True
 SOCIAL = (
     ("github", "https://github.com/athiraraghu-blr"),
     ("linkedin", "https://www.linkedin.com/in/athiraraghu14/"),
-    ("blog", "https://articlevil.substack.com/"),
-    ("newspaper", "https://athiraraghu-blr.github.io/pynotes/"),
+    ("substack", "https://articlevil.substack.com/"),
+    ("python", "https://athiraraghu-blr.github.io/pynotes/"),
 )
 
 DEFAULT_PAGINATION = 10

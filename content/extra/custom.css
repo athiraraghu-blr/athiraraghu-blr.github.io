@@ -1,98 +1,179 @@
 /* ==========================================================================
-   Plum theme overrides for Flex
-   Loaded after style.min.css via CUSTOM_CSS in pelicanconf.py
-   Plum palette:
-     --plum-deep:   #5e2750  (deep plum, sidebar / dark accents)
-     --plum:        #8e3b6b  (primary plum)
-     --plum-mid:    #a4508b  (links)
-     --plum-light:  #c874b2  (hover / light accents)
-     --plum-pale:   #f3e6ef  (pale backgrounds)
+   Plum theme overrides for the Flex Pelican theme
+   Loaded AFTER style.min.css via CUSTOM_CSS in pelicanconf.py
+
+   Fixed palette (less pink, more true plum):
+     --plum-deep:   #2d142c   deepest plum, sidebar background
+     --plum:        #4b1e46   primary plum
+     --plum-mid:    #7b3f6b   links / mid accents
+     --plum-accent: #9c5285   buttons / active states
+     --plum-light:  #c98bae   hover state (soft rose-plum, not hot pink)
+     --plum-pale:   #f2e6ee   pale backgrounds
    ========================================================================== */
 
 :root {
-  --plum-deep: #440c36;
-  --plum: #782c58;
-  --plum-mid: #894474;
-  --plum-light: #c464aa;
-  --plum-pale: #f4adde;
+  --plum-deep:   #2d142c;
+  --plum:        #4b1e46;
+  --plum-mid:    #7b3f6b;
+  --plum-accent: #9c5285;
+  --plum-light:  #c98bae;
+  --plum-pale:   #f2e6ee;
 }
 
-/* ---- Links ---- */
-a {
-  color: var(--plum-mid);
+/* ---- Links (generic) ---- */
+a,
+a:visited {
+  color: var(--plum-mid) !important;
 }
 a:hover,
 a:focus {
-  color: var(--plum-light);
+  color: var(--plum-accent) !important;
 }
 
-/* Article titles and their links */
-article header h1 a,
-article header h2 a,
-.single h1 a {
-  color: var(--plum);
+/* ---- Sidebar: Flex uses #sidebar, not <aside> generically ---- */
+#sidebar,
+#sidebar.body {
+  background-color: var(--plum-deep) !important;
+  background-image: none !important;
 }
-article header h1 a:hover,
-article header h2 a:hover {
-  color: var(--plum-light);
+#sidebar #about h1,
+#sidebar #about h1 a,
+#sidebar #about p,
+#sidebar p.subtitle {
+  color: #ffffff !important;
 }
-
-/* ---- Sidebar (aside) ---- */
-aside {
-  background-color: var(--plum-deep);
+#sidebar nav#menu a,
+#sidebar #links a,
+#sidebar .list a {
+  color: var(--plum-pale) !important;
 }
-aside h1 a,
-aside p {
-  color: #ffffff;
-}
-aside .list a {
-  color: #f3e6ef;
-}
-aside .list a:hover {
-  color: #ffffff;
+#sidebar nav#menu a:hover,
+#sidebar #links a:hover,
+#sidebar .list a:hover {
+  color: #ffffff !important;
 }
 
-/* Circular profile image with a plum ring (matches Kaaviyasri's look) */
-aside img {
-  border-radius: 50%;
-  border: 3px solid var(--plum-light);
+/* Circular avatar with a plum ring.
+   Force a square box + object-fit:cover so a non-square photo renders as a
+   perfect circle instead of an oval/ellipse. */
+#sidebar #about img,
+#sidebar img#site-avatar,
+#sidebar img {
+  width: 200px !important;
+  height: 200px !important;
+  border-radius: 50% !important;
+  border: 3px solid var(--plum-accent) !important;
   object-fit: cover;
+  display: block;
+  margin: 0 auto;
 }
 
-/* ---- Buttons (e.g. "Continue reading") ---- */
+/* ---- Top banner/menu, if TOP_MENU is used ---- */
+#banner,
+header#banner {
+  background-color: var(--plum-deep) !important;
+}
+#banner a {
+  color: #ffffff !important;
+}
+
+/* ---- Article / post titles ---- */
+#content article header h1,
+#content article header h1 a,
+#content .post-title,
+#content .post-title a,
+.single h1,
+.single h1 a {
+  color: var(--plum) !important;
+}
+#content article header h1 a:hover,
+#content .post-title a:hover {
+  color: var(--plum-accent) !important;
+}
+
+/* Post meta line (date / category) */
+#content article header p,
+#content article header p a,
+.post-info a {
+  color: var(--plum-mid) !important;
+}
+
+/* ---- Buttons, e.g. "Continue reading" ---- */
 .btn,
-a.btn {
-  background-color: var(--plum);
-  color: #ffffff;
+a.btn,
+.button.more {
+  background-color: var(--plum) !important;
+  border-color: var(--plum) !important;
+  color: #ffffff !important;
 }
 .btn:hover,
-a.btn:hover {
-  background-color: var(--plum-light);
-  color: #ffffff;
+a.btn:hover,
+.button.more:hover {
+  background-color: var(--plum-accent) !important;
 }
 
-/* ---- Tags / tag cloud ---- */
+/* ---- Tags ---- */
 .tag-cloud a,
-.tags a {
-  background-color: var(--plum);
-  color: #ffffff;
+.tags a,
+#content .tags a {
+  background-color: var(--plum) !important;
+  color: #ffffff !important;
 }
 .tag-cloud a:hover,
 .tags a:hover {
-  background-color: var(--plum-light);
+  background-color: var(--plum-accent) !important;
 }
 
-/* ---- Category / meta accents ---- */
-article header p a {
-  color: var(--plum-mid);
+/* ---- Pagination ---- */
+.pagination a,
+.pagination span {
+  color: var(--plum-mid) !important;
+}
+.pagination .active,
+.pagination a:hover {
+  background-color: var(--plum) !important;
+  color: #ffffff !important;
 }
 
 /* ==========================================================================
    Dark theme adjustments
    ========================================================================== */
-body.dark-theme aside,
+body.dark-theme #sidebar {
+  background-color: #1a0a19 !important;
+}
 @media (prefers-color-scheme: dark) {
-  aside {
-    background-color: #2a1226;
+  #sidebar {
+    background-color: #1a0a19 !important;
   }
+}
+
+/* ==========================================================================
+   Social icons — give every icon a filled colored circle (matches the look
+   where GitHub / LinkedIn / Substack / Python all have brand-colored circles)
+   ========================================================================== */
+
+/* Substack — orange circle with the Substack bookmark mark.
+   The bundled Font Awesome has no fa-substack glyph, so we draw the mark
+   with an inline SVG background and hide the (empty) font icon. */
+.social a.sc-substack {
+  background-color: #ff6719;
+  color: #ffffff;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'%3E%3Cpath d='M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 16px 16px;
+}
+.social a.sc-substack i {
+  display: none;
+}
+
+/* Python (PyPI notes) — Python blue circle, yellow glyph */
+.social a.sc-python {
+  background-color: #3776ab;
+  color: #ffd43b;
+}
+
+/* Make sure the glyphs stay centered and white on all social circles */
+.social a i {
+  color: inherit;
 }
