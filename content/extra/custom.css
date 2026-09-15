@@ -164,6 +164,16 @@ aside ul.social a,
   text-align: center !important;
 }
 
+/* Keep the glyphs white — the generic plum link color must NOT tint icons. */
+aside ul.social a,
+aside ul.social a:visited,
+aside ul.social a i,
+.social a,
+.social a:visited,
+.social a i {
+  color: #ffffff !important;
+}
+
 /* Substack — orange circle with the Substack bookmark mark.
    The bundled Font Awesome has NO fa-substack glyph, so the <i> renders empty.
    We draw the mark as an inline SVG background and hide the empty glyph. */
@@ -188,10 +198,10 @@ aside ul.social a.sc-substack i,
 aside ul.social a.sc-python,
 .social a.sc-python {
   background-color: #ffffff !important;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 111 111'><path fill='%233776ab' d='M54.9 0C26.9 0 28.6 12.2 28.6 12.2l0 12.6h26.8v3.8H18C18 28.6 0 26.6 0 55.1c0 28.5 15.7 27.5 15.7 27.5h9.4V69.5s-.5-15.7 15.5-15.7h26.6s14.9.2 14.9-14.4V14.6S94.9 0 54.9 0zM40.1 8.5a4.8 4.8 0 1 1 0 9.7 4.8 4.8 0 0 1 0-9.7z'/><path fill='%23ffd43b' d='M56.1 111c28 0 26.3-12.2 26.3-12.2l0-12.6H55.6v-3.8H93s18 2 18-26.5c0-28.5-15.7-27.5-15.7-27.5h-9.4v12.9s.5 15.7-15.5 15.7H43.8s-14.9-.2-14.9 14.4v24.2S16.1 111 56.1 111zM70.9 102.5a4.8 4.8 0 1 1 0-9.7 4.8 4.8 0 0 1 0 9.7z'/></svg>") !important;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 111 111'><path fill='rgb(55,118,171)' d='M54.9 0C26.9 0 28.6 12.2 28.6 12.2l0 12.6h26.8v3.8H18C18 28.6 0 26.6 0 55.1c0 28.5 15.7 27.5 15.7 27.5h9.4V69.5s-.5-15.7 15.5-15.7h26.6s14.9.2 14.9-14.4V14.6S94.9 0 54.9 0zM40.1 8.5a4.8 4.8 0 1 1 0 9.7 4.8 4.8 0 0 1 0-9.7z'/><path fill='rgb(255,212,59)' d='M56.1 111c28 0 26.3-12.2 26.3-12.2l0-12.6H55.6v-3.8H93s18 2 18-26.5c0-28.5-15.7-27.5-15.7-27.5h-9.4v12.9s.5 15.7-15.5 15.7H43.8s-14.9-.2-14.9 14.4v24.2S16.1 111 56.1 111zM70.9 102.5a4.8 4.8 0 1 1 0-9.7 4.8 4.8 0 0 1 0 9.7z'/></svg>") !important;
   background-repeat: no-repeat !important;
   background-position: center !important;
-  background-size: 24px 24px !important;
+  background-size: 22px 22px !important;
 }
 aside ul.social a.sc-python i,
 .social a.sc-python i {
