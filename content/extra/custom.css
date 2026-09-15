@@ -65,6 +65,8 @@ aside img {
   border-radius: 50% !important;
   border: 3px solid var(--plum-accent) !important;
   object-fit: cover !important;
+  /* Bias the crop toward the top so the head isn't clipped */
+  object-position: center 15% !important;
   display: block !important;
   margin: 0 auto !important;
 }
@@ -152,6 +154,21 @@ body.dark-theme #sidebar {
    Social icons — give every icon a filled colored circle (matches the look
    where GitHub / LinkedIn / Substack / Python all have brand-colored circles)
    ========================================================================== */
+
+/* Center the social icon row and space the circles evenly. */
+aside ul.social {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding-left: 0 !important;
+  list-style: none !important;
+}
+aside ul.social li {
+  display: inline-flex !important;
+  margin: 0 !important;
+}
 
 /* Force every social icon to be an equal-sized filled circle. */
 aside ul.social a,
