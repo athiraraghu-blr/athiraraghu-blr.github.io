@@ -54,18 +54,19 @@ a:focus {
 }
 
 /* Circular avatar with a plum ring.
-   Force a square box + object-fit:cover so a non-square photo renders as a
-   perfect circle instead of an oval/ellipse. */
-#sidebar #about img,
-#sidebar img#site-avatar,
-#sidebar img {
+   The real markup is: aside > div > a > img  (no #sidebar / #about ids).
+   Force an equal width AND height + object-fit:cover so a non-square photo
+   renders as a perfect circle instead of an oval/ellipse. */
+aside div a img,
+aside img {
   width: 200px !important;
   height: 200px !important;
+  max-width: 200px !important;
   border-radius: 50% !important;
   border: 3px solid var(--plum-accent) !important;
-  object-fit: cover;
-  display: block;
-  margin: 0 auto;
+  object-fit: cover !important;
+  display: block !important;
+  margin: 0 auto !important;
 }
 
 /* ---- Top banner/menu, if TOP_MENU is used ---- */
@@ -152,28 +153,47 @@ body.dark-theme #sidebar {
    where GitHub / LinkedIn / Substack / Python all have brand-colored circles)
    ========================================================================== */
 
+/* Force every social icon to be an equal-sized filled circle. */
+aside ul.social a,
+.social a {
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 50% !important;
+  display: inline-block !important;
+  line-height: 36px !important;
+  text-align: center !important;
+}
+
 /* Substack — orange circle with the Substack bookmark mark.
-   The bundled Font Awesome has no fa-substack glyph, so we draw the mark
-   with an inline SVG background and hide the (empty) font icon. */
+   The bundled Font Awesome has NO fa-substack glyph, so the <i> renders empty.
+   We draw the mark as an inline SVG background and hide the empty glyph. */
+aside ul.social a.sc-substack,
 .social a.sc-substack {
-  background-color: #ff6719;
-  color: #ffffff;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'%3E%3Cpath d='M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 16px 16px;
+  background-color: #ff6719 !important;
+  color: #ffffff !important;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M1.5 0h21v3.6h-21V0zM1.5 5.4h21V9h-21V5.4zM1.5 10.8h21V24l-10.5-6L1.5 24V10.8z'/></svg>") !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: 15px 15px !important;
 }
+aside ul.social a.sc-substack i,
 .social a.sc-substack i {
-  display: none;
+  display: none !important;
 }
 
-/* Python (PyPI notes) — Python blue circle, yellow glyph */
+/* Python (PyPI notes) — official two-tone Python logo (blue + yellow snakes).
+   Font Awesome's fa-python is single-color, so we draw the real two-color mark
+   as an inline SVG background and hide the font glyph. White circle so both
+   the blue and yellow tones read clearly. */
+aside ul.social a.sc-python,
 .social a.sc-python {
-  background-color: #3776ab;
-  color: #ffd43b;
+  background-color: #ffffff !important;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 111 111'><path fill='%233776ab' d='M54.9 0C26.9 0 28.6 12.2 28.6 12.2l0 12.6h26.8v3.8H18C18 28.6 0 26.6 0 55.1c0 28.5 15.7 27.5 15.7 27.5h9.4V69.5s-.5-15.7 15.5-15.7h26.6s14.9.2 14.9-14.4V14.6S94.9 0 54.9 0zM40.1 8.5a4.8 4.8 0 1 1 0 9.7 4.8 4.8 0 0 1 0-9.7z'/><path fill='%23ffd43b' d='M56.1 111c28 0 26.3-12.2 26.3-12.2l0-12.6H55.6v-3.8H93s18 2 18-26.5c0-28.5-15.7-27.5-15.7-27.5h-9.4v12.9s.5 15.7-15.5 15.7H43.8s-14.9-.2-14.9 14.4v24.2S16.1 111 56.1 111zM70.9 102.5a4.8 4.8 0 1 1 0-9.7 4.8 4.8 0 0 1 0 9.7z'/></svg>") !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: 24px 24px !important;
 }
-
-/* Make sure the glyphs stay centered and white on all social circles */
-.social a i {
-  color: inherit;
+aside ul.social a.sc-python i,
+.social a.sc-python i {
+  display: none !important;
 }
