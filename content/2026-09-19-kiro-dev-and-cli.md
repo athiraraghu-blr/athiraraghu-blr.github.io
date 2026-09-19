@@ -14,11 +14,11 @@ Slug: kiro-ide-cli-guide-credits-explained-500-to-50
 
 4. It comes in several interfaces that share **one subscription and one credit pool:**
 
-- **Kiro IDE**: the desktop editor, now at version 1.x.
+ **Kiro IDE**: the desktop editor, now at version 1.x.
 
-- **Kiro CLI**: the terminal agent, and the successor to the Q Developer CLI.
+ **Kiro CLI**: the terminal agent, and the successor to the Q Developer CLI.
 
-- **Kiro Web, Mobile, and Crew**: cloud-based surfaces. Kiro Web uses the same credit model, with no separate cloud compute charge.
+ **Kiro Web, Mobile, and Crew**: cloud-based surfaces. Kiro Web uses the same credit model, with no separate cloud compute charge.
 
 # **Kiro IDE: complete overview**
 
@@ -30,9 +30,9 @@ Slug: kiro-ide-cli-guide-credits-explained-500-to-50
 
 3. **Hooks**: automations that fire on events.
 
-- In IDE 1.0 they use a structured JSON format stored in .kiro/hooks/.
+ In IDE 1.0 they use a structured JSON format stored in .kiro/hooks/.
 
-- You can create them by describing what you want in natural language.
+ You can create them by describing what you want in natural language.
 
 4. **MCP support**: connect external tools and data sources.
 
@@ -40,15 +40,15 @@ Slug: kiro-ide-cli-guide-credits-explained-500-to-50
 
 6. **Capability-based permissions:**
 
-- The agent asks for approval before doing anything you haven't explicitly allowed.
+ The agent asks for approval before doing anything you haven't explicitly allowed.
 
-- By default it can read workspace files and run read-only git commands. Everything else prompts.
+ By default it can read workspace files and run read-only git commands. Everything else prompts.
 
 7. **Agent Focus Mode (experimental):**
 
-- An agent-first layout that can run several parallel sessions.
+ An agent-first layout that can run several parallel sessions.
 
-- Includes Spec, Plan, Bug Fix, and Quick Spec workflows.
+ Includes Spec, Plan, Bug Fix, and Quick Spec workflows.
 
 8. **Also included**: Powers, agent skills, checkpoints and rewind, compaction for long sessions, dockable chat, and session export.
 
@@ -85,9 +85,9 @@ bash
 
 4. **Cloud sessions.**
 
-- Start with --cloud, add repositories with --repo, and resume with --resume-id <session-id>.
+ Start with --cloud, add repositories with --repo, and resume with --resume-id <session-id>.
 
-- Pick the task up later from the IDE, web, or phone.
+ Pick the task up later from the IDE, web, or phone.
 
 5. **ACP support**, so it works with editors such as JetBrains IDEs, Eclipse, and Zed.
 
@@ -97,25 +97,25 @@ bash
 
 2. **New in 3.0:**
 
-- A built-in Spec agent (/spec new <name>).
+ A built-in Spec agent (/spec new <name>).
 
-- A Plan mode (Shift+Tab).
+ A Plan mode (Shift+Tab).
 
-- /tangent, which branches side-conversations that inherit your context.
+ /tangent, which branches side-conversations that inherit your context.
 
-- permissions.yaml for structured, capability-based permission rules.
+ permissions.yaml for structured, capability-based permission rules.
 
-- Standalone hook files and Markdown-based agent configs.
+ Standalone hook files and Markdown-based agent configs.
 
 3. **Migration costs to know about:**
 
-- The aws_tool was removed. Use MCP servers for AWS access instead.
+ The aws_tool was removed. Use MCP servers for AWS access instead.
 
-- The session format is not backward-compatible, so back up ~/.kiro/sessions/ before upgrading.
+ The session format is not backward-compatible, so back up ~/.kiro/sessions/ before upgrading.
 
-- Hooks and permissions need manual migration.
+ Hooks and permissions need manual migration.
 
-- It does not run on Amazon Linux 2.
+ It does not run on Amazon Linux 2.
 
 **CLI pricing**
 
@@ -125,11 +125,11 @@ bash
 
 1. A credit is Kiro's unit of work.
 
-- Simple prompts can cost less than one credit.
+ Simple prompts can cost less than one credit.
 
-- More complex work, such as executing a spec task, usually costs more than one.
+ More complex work, such as executing a spec task, usually costs more than one.
 
-- Credits are metered to two decimal places, so the minimum charge is 0.01 credits.
+ Credits are metered to two decimal places, so the minimum charge is 0.01 credits.
 
 2. What consumes credits: any prompt to the agent (vibe or spec), spec refinement, task execution, and agent hook execution. Usage from the IDE, CLI, and Web all draws from the same pool.
 
@@ -153,9 +153,9 @@ bash
 
 1. **Individual paid users** can buy add-on credit packs at **$0.04 per credit.**
 
-- Packs range from $5 (125 credits) up to $100.
+ Packs range from $5 (125 credits) up to $100.
 
-- Purchased credits roll over and expire 12 months after purchase.
+ Purchased credits roll over and expire 12 months after purchase.
 
 2. **Enterprise admins** can enable overages instead. They are billed at $0.04 per credit at month-end and are off by default.
 
@@ -175,11 +175,11 @@ bash
 
 2. Cost depends on three things:
 
-- the prompt's complexity;
+ the prompt's complexity;
 
-- the model you choose;
+ the model you choose;
 
-- how much the model "thinks" (reasoning effort).
+ how much the model "thinks" (reasoning effort).
 
 3. Every model has a multiplier relative to **Auto**, Kiro's default router (1.0x).
 
@@ -247,17 +247,17 @@ The headline is only partly accurate. Here is what actually happened.
 
 2. Instead, anyone who upgrades to a paid plan for the first time gets **$20 credited toward the subscription**.
 
-- Kiro describes this as 1,000 credits of usage, double the old 500.
+ Kiro describes this as 1,000 credits of usage, double the old 500.
 
-- It requires a valid credit card.
+ It requires a valid credit card.
 
-- It requires sign-in via social login or AWS Builder ID, not AWS Identity Center or third-party identity providers.
+ It requires sign-in via social login or AWS Builder ID, not AWS Identity Center or third-party identity providers.
 
 3. Kiro's stated reasons:
 
-- 500 credits often wasn't enough to build something meaningful and form a real opinion.
+ 500 credits often wasn't enough to build something meaningful and form a real opinion.
 
-- Open-weight models have matured enough that free users can get good results without frontier models.
+ Open-weight models have matured enough that free users can get good results without frontier models.
 
 **What did not change**
 
@@ -275,9 +275,9 @@ The headline is only partly accurate. Here is what actually happened.
 
 4. Two ways to read the change:
 
-- **Generous reading**: a bigger, more useful trial for people who are serious about evaluating Kiro.
+ **Generous reading**: a bigger, more useful trial for people who are serious about evaluating Kiro.
 
-- **Skeptical reading**: it moves evaluation from a free trial to a credit-card-backed paid trial.
+ **Skeptical reading**: it moves evaluation from a free trial to a credit-card-backed paid trial.
 
 # **Advantages**
 
@@ -301,41 +301,41 @@ The headline is only partly accurate. Here is what actually happened.
 
 1. **Opaque credit costs.**
 
-- There is no per-action table and no published token-to-credit rate.
+ There is no per-action table and no published token-to-credit rate.
 
-- Critics say the interface can fail to warn you before a large spec-driven loop consumes a big chunk of your allocation.
+ Critics say the interface can fail to warn you before a large spec-driven loop consumes a big chunk of your allocation.
 
 2. **The free-tier squeeze.**
 
-- The 500-credit trial is gone for new users.
+ The 500-credit trial is gone for new users.
 
-- Premium models are paywalled, and free usage has rate limits and weekly quotas.
+ Premium models are paywalled, and free usage has rate limits and weekly quotas.
 
 3. **No rollover and no sharing**. Plan credits vanish monthly, and every developer needs their own seat.
 
 4. **Heavier for quick prototyping.**
 
-- One review says it feels heavy for pure rapid prototyping and that Cursor is usually faster to start.
+ One review says it feels heavy for pure rapid prototyping and that Cursor is usually faster to start.
 
-- Long sessions can get expensive.
+ Long sessions can get expensive.
 
-- The spec workflow pays off only if your team actually engages with it.
+ The spec workflow pays off only if your team actually engages with it.
 
 5. **Migration friction.**
 
-- IDE 1.0 retired inline chat and requires session and hook migration.
+ IDE 1.0 retired inline chat and requires session and hook migration.
 
-- CLI 3.0 has breaking changes, and its sessions can't be resumed in v2.
+ CLI 3.0 has breaking changes, and its sessions can't be resumed in v2.
 
 6. **Restrictions and regional limits.**
 
-- Premium-model availability varies by country and region.
+ Premium-model availability varies by country and region.
 
-- The free tier is not available in Enterprise or AWS GovCloud.
+ The free tier is not available in Enterprise or AWS GovCloud.
 
-- GovCloud pricing is roughly 20% higher.
+ GovCloud pricing is roughly 20% higher.
 
-- Kiro prohibits using subscriptions through third-party automation harnesses such as OpenClaw.
+ Kiro prohibits using subscriptions through third-party automation harnesses such as OpenClaw.
 
 7. **Proprietary license**. Both the IDE and CLI are distributed under a standard proprietary license.
 
@@ -345,29 +345,29 @@ The headline is only partly accurate. Here is what actually happened.
 
 1. **Choose Kiro if:**
 
-- you build production software on a team;
+ you build production software on a team;
 
-- you want enforced structure, steering, and hooks;
+ you want enforced structure, steering, and hooks;
 
-- you want one agent across IDE, terminal, cloud, and CI;
+ you want one agent across IDE, terminal, cloud, and CI;
 
-- you already work in the AWS ecosystem.
+ you already work in the AWS ecosystem.
 
 2. **Consider alternatives if:**
 
-- you mostly want fast inline edits;
+ you mostly want fast inline edits;
 
-- you need pooled credits across many people;
+ you need pooled credits across many people;
 
-- your usage is unpredictable and bursty.
+ your usage is unpredictable and bursty.
 
 3. **Best way to evaluate:**
 
-- Start on Free.
+ Start on Free.
 
-- Use the first-upgrade bonus for a month on Pro.
+ Use the first-upgrade bonus for a month on Pro.
 
--Watch the per-prompt credit display, and size your tier from measured usage rather than the credit numbers on the pricing page.
+ Watch the per-prompt credit display, and size your tier from measured usage rather than the credit numbers on the pricing page.
 
 # **Bottom line**
 
