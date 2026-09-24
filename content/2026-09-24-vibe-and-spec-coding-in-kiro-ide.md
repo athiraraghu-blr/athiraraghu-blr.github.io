@@ -39,7 +39,7 @@ Every spec lives in .kiro/specs/<feature-name>/ as a small set of Markdown files
 
 1. **Requirements**. Kiro turns your request into user stories with acceptance criteria written in EARS notation (Easy Approach to Requirements Syntax) — a structured pattern such as:
 
- WHEN a user submits a form with invalid data, THE SYSTEM SHALL display validation errors next to the relevant fields.
+WHEN a user submits a form with invalid data, THE SYSTEM SHALL display validation errors next to the relevant fields.
 
 This format forces clarity: each requirement is unambiguous, testable, and traceable back to a specific behavior, instead of living as a fuzzy paragraph of intent.
 
