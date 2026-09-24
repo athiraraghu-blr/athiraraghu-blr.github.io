@@ -33,9 +33,10 @@ Spec mode is Kiro's answer to that compounding-guesswork problem. Rather than ju
 Every spec lives in .kiro/specs/<feature-name>/ as a small set of Markdown files:
 
     .kiro/specs/my-feature/
-        requirements.md   # or bugfix.md for bug fixes
-        design.md
-        tasks.md
+    requirements.md   # or bugfix.md for bug fixes
+    design.md
+    tasks.md
+
 
 1. **Requirements**. Kiro turns your request into user stories with acceptance criteria written in EARS notation (Easy Approach to Requirements Syntax) — a structured pattern such as:
 
