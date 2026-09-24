@@ -1,5 +1,5 @@
 Title: From Web App to APK: Packaging Your Site with Capacitor
-Date: 2026-09-20
+Date: 2026-09-24
 Category: Article
 Tags: capacitor, android, apk, hybrid-apps, mobile-development, javascript, ionic
 Slug: web-app-to-apk-capacitor-guide
