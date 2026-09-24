@@ -1,5 +1,5 @@
 Title: Vibe Meets Spec: Inside Kiro IDE's Two Minds for AI-Native Development
-Date: 2026-09-20
+Date: 2026-09-24
 Category: Article
 Tags: Kiro IDE, Vibe Coding, Spec-Driven Development, AI Coding Assistant, Agentic IDE, AWS, Software Engineering, Developer Tools
 Slug: vibe-meets-spec-kiro-ide-two-modes
